@@ -1,0 +1,3 @@
+CompileFlags:
+  CompilationDatabase: >-
+    \\wsl.localhost\Ubuntu-20.04\home\csi_3\alif_stuff\alif_inference_runner\alif_src\dependencies\Arm-2D\test\out\arm2d_generic\VHT-Corstone-310\Debug

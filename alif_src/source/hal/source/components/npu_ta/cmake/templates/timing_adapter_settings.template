@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: Copyright 2021, 2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// Auto-generated file
+// ** DO NOT EDIT **
+
+#ifndef TIMING_ADAPTER_SETTINGS_H
+#define TIMING_ADAPTER_SETTINGS_H
+
+#cmakedefine TA_SRAM_BASE   (@TA_SRAM_BASE@)
+#cmakedefine TA_EXT_BASE    (@TA_EXT_BASE@)
+
+/* Timing adapter settings for SRAM */
+#if defined(TA_SRAM_BASE)
+
+#define SRAM_MAXR           (@SRAM_MAXR@)
+#define SRAM_MAXW           (@SRAM_MAXW@)
+#define SRAM_MAXRW          (@SRAM_MAXRW@)
+#define SRAM_RLATENCY       (@SRAM_RLATENCY@)
+#define SRAM_WLATENCY       (@SRAM_WLATENCY@)
+#define SRAM_PULSE_ON       (@SRAM_PULSE_ON@)
+#define SRAM_PULSE_OFF      (@SRAM_PULSE_OFF@)
+#define SRAM_BWCAP          (@SRAM_BWCAP@)
+#define SRAM_PERFCTRL       (@SRAM_PERFCTRL@)
+#define SRAM_PERFCNT        (@SRAM_PERFCNT@)
+#define SRAM_MODE           (@SRAM_MODE@)
+#define SRAM_HISTBIN        (@SRAM_HISTBIN@)
+#define SRAM_HISTCNT        (@SRAM_HISTCNT@)
+
+#endif /* defined(TA_SRAM_BASE) */
+
+/* Timing adapter settings for EXT */
+#if defined(TA_EXT_BASE)
+
+#define EXT_MAXR           (@EXT_MAXR@)
+#define EXT_MAXW           (@EXT_MAXW@)
+#define EXT_MAXRW          (@EXT_MAXRW@)
+#define EXT_RLATENCY       (@EXT_RLATENCY@)
+#define EXT_WLATENCY       (@EXT_WLATENCY@)
+#define EXT_PULSE_ON       (@EXT_PULSE_ON@)
+#define EXT_PULSE_OFF      (@EXT_PULSE_OFF@)
+#define EXT_BWCAP          (@EXT_BWCAP@)
+#define EXT_PERFCTRL       (@EXT_PERFCTRL@)
+#define EXT_PERFCNT        (@EXT_PERFCNT@)
+#define EXT_MODE           (@EXT_MODE@)
+#define EXT_HISTBIN        (@EXT_HISTBIN@)
+#define EXT_HISTCNT        (@EXT_HISTCNT@)
+
+#endif /* defined(TA_EXT_BASE) */
+
+#endif /* TIMING_ADAPTER_SETTINGS_H */

@@ -1,0 +1,17 @@
+{
+    "DEVICE": {
+        "disabled" : false,
+        "binary": "app-device-config.json",
+        "version" : "0.5.00",
+        "signed": true
+    },
+    "CNN_VELA_HE": {
+        "disabled": false,
+        "binary": "CNN_litert_vela_inference_runner.bin",
+	    "mramAddress": "0x80008000",
+        "version" : "1.0.0",
+        "cpu_id": "M55_HE",
+        "flags": ["boot"],
+	    "signed": false
+    }
+}

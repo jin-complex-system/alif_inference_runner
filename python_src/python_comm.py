@@ -120,7 +120,7 @@ def execute_test(
         target_directory,
         target_prefix,
         debug=False):
-    samples, y_test = parse_directory("INPUT")
+    samples, y_test = parse_directory("INPUT_ORBIWISE_19")
     y_test = np.array(y_test, dtype=np.uint8)
     assert(len(samples) == len(y_test))
 
@@ -170,15 +170,19 @@ def execute_test(
     #         assert(data_message == bytearray(actual_data, "utf-8"))
     #     time.sleep(SERIAL_TIMEOUT_SECONDS * 2)
 
-    print("Begin loading {} inputs into embedded model".format(len(samples)))
-    for sample_iterator in range(0, len(samples)):
+
+    starting_iterator = 0
+    print("Begin loading {} inputs into embedded model, starting with sample {}".format(
+        len(samples), starting_iterator))
+    for sample_iterator in range(starting_iterator, len(samples)):
         sample = samples[sample_iterator]
+        label = y_test[sample_iterator]
 
         prediction = send_user_input(
             serialPort=serialPort,
             np_array=sample,
-            write_timeout_seconds=0.01,
-            wait_for_execution_timeout=0.1,
+            write_timeout_seconds=0.009,
+            wait_for_execution_timeout=0.7,
             num_iterations=1,
             debug=debug,
         )
@@ -190,8 +194,8 @@ def execute_test(
         if (debug):
             print("Iterator: {}, Label: {}, prediction: {}".format(
                 sample_iterator,
-                y_test[sample_iterator],
-                y_pred[sample_iterator]))
+                label,
+                prediction))
 
     print(y_pred)
 

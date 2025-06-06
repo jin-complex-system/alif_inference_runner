@@ -33,11 +33,13 @@ def test_loop(
 
 def main():
     TARGET = [
-        'DTFT_SAC_Q',
-        'CNN_litert',
-        'DTFT_Q',
-        'FT_Q',
-        'TFT_Q',
+        'model_orbw_19_Q',
+        # 'OB_model2_Q',
+        # 'DTFT_SAC_Q',
+        # 'CNN_litert',
+        # 'DTFT_Q',
+        # 'FT_Q',
+        # 'TFT_Q',
     ]
 
     TARGET_POSTFIX = [

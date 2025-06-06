@@ -54,7 +54,7 @@ extern size_t GetModelLen();
 
 #include "MicroMutableAllOpsResolver.hpp"
 
-constexpr uint32_t MODEL_INPUT_SIZE = 32u * 32u;
+constexpr uint32_t MODEL_INPUT_SIZE = 68u * 384u;
 constexpr uint32_t prefix_str_length = 0u;
 constexpr uint32_t postfix_str_length = 1u;
 constexpr uint32_t my_buffer_len = prefix_str_length + MODEL_INPUT_SIZE +  + postfix_str_length;

@@ -7,6 +7,9 @@ extract_binary_from_model()
 
     cp ${MODEL_DIRECTORY}/${ORIGINAL_MODEL}.tflite models/.
 
+    echo "Processing"
+    echo ${ORIGINAL_MODEL}
+    
     cd models
     ../resources_downloaded/env/bin/vela \
         --accelerator-config=ethos-u55-128 \
@@ -14,13 +17,17 @@ extract_binary_from_model()
         --config ../scripts/vela/default_vela.ini \
         --memory-mode=Shared_Sram \
         --system-config=Ethos_U55_High_End_Embedded \
+        --verbose-performance \
         --output-dir=. \
         ${ORIGINAL_MODEL}.tflite
     xxd -i ${ORIGINAL_MODEL}_vela.tflite > ${ORIGINAL_MODEL}_vela.h
     cd ..
 
-    # build_and_make  "${ORIGINAL_MODEL}"
     # build_and_make  "${ORIGINAL_MODEL}_vela"
+    # build_and_make  "${ORIGINAL_MODEL}"
+
+    echo "Done with"
+    echo ${ORIGINAL_MODEL}
 }
 
 build_and_make()
@@ -65,8 +72,10 @@ rm -rf build_he_infrun_*
 rm -rf models
 mkdir models
 
-extract_binary_from_model "DTFT_Q" "../my_models"
-extract_binary_from_model "DTFT_SAC_Q" "../my_models"
-extract_binary_from_model "TFT_Q" "../my_models"
-extract_binary_from_model "FT_Q" "../my_models"
-extract_binary_from_model "CNN_litert" "../my_models"
+extract_binary_from_model "DTFT_Q" "../../my_models"
+extract_binary_from_model "DTFT_SAC_Q" "../../my_models"
+# extract_binary_from_model "TFT_Q" "../../my_models"
+# extract_binary_from_model "FT_Q" "../../my_models"
+extract_binary_from_model "CNN_litert" "../../my_models"
+extract_binary_from_model "OB_model2_Q" "../../my_models"
+extract_binary_from_model "model_orbw_19_Q" "../../my_models"

@@ -22,6 +22,8 @@
 #include "log_macros.h"             /* Logging functions */
 #include "BufAttributes.hpp"        /* Buffer attributes to be applied */
 
+#include <limits.h>
+
 namespace arm {
 namespace app {
     static uint8_t tensorArena[ACTIVATION_BUF_SZ] ACTIVATION_BUF_ATTRIBUTE;
@@ -64,7 +66,7 @@ char input_buffer[MODEL_INPUT_SIZE];
 
 void MainLoop()
 {
-    info("Main loop.\n");
+    info("Enter MainLoop()\r\n");
 
     arm::app::Model model;  /* Model wrapper object. */
 
@@ -73,9 +75,10 @@ void MainLoop()
                     sizeof(arm::app::tensorArena),
                     arm::app::inference_runner::GetModelPointer(),
                     arm::app::inference_runner::GetModelLen())) {
-        printf_err("Failed to initialise model\n");
+        printf_err("Failed to initialise model\r\n");
         return;
     }
+    info("Finish model.Init()\r\n");
     model.ShowModelInfoHandler();
 
     /* Instantiate application context. */
@@ -86,7 +89,10 @@ void MainLoop()
     caseContext.Set<arm::app::Model&>("model", model);
 
     uint32_t input_buffer_length = 0;
+
+    info("Entering while(true) loop\r\n");
     while(true) {
+        int32_t num_iterations = 100;
         memset(my_buffer, 0, my_buffer_len);
 
         /// Read from user input
@@ -102,7 +108,7 @@ void MainLoop()
                 memset(input_buffer, 0, MODEL_INPUT_SIZE);
                 input_buffer_length = 0;
 
-                printf("Emptied\n");
+                printf("Emptied\r\n");
                 break;
 
             /// Insert and increment
@@ -111,10 +117,10 @@ void MainLoop()
                     int8_t my_integer = atoi(&my_buffer[1]);
 
                     input_buffer[input_buffer_length++] = my_integer;
-                    printf("%c\n", my_integer);
+                    printf("%c\r\n", my_integer);
                 }
                 else {
-                    printf("Full\n");
+                    printf("Full\r\n");
                 }
 
                 break;
@@ -122,7 +128,7 @@ void MainLoop()
             /// Execute
             case 'e':
                 /// Number of executions
-                int32_t num_iterations = atol(&my_buffer[1]);
+                num_iterations = atol(&my_buffer[1]);
 
                 if (num_iterations <= 0) {
                     num_iterations = 1;
@@ -134,7 +140,7 @@ void MainLoop()
                 memcpy(input_data, input_buffer, input_tensor->bytes);
 
                 if (!RunInference(model, profiler, num_iterations)) {
-                    warn("Something went wrong with inferencing\n");
+                    warn("Something went wrong with inferencing\r\n");
                 }
 
                 /// Retrieve output results (outer-most) and get the best result
@@ -142,7 +148,7 @@ void MainLoop()
                 TfLiteTensor* output_tensor = model.GetOutputTensor(output_index);
                 int8_t* output_data = tflite::GetTensorData<int8_t>(output_tensor);
 
-                int8_t best_result = -1;
+                int8_t best_result = std::numeric_limits<int8_t>::min();
                 uint16_t best_class = 0;
                 
                 for (uint32_t iterator = 0; iterator < output_tensor->bytes; iterator++) {
@@ -151,7 +157,7 @@ void MainLoop()
                         best_class = iterator;
                     }
                 }
-                printf("%u\n", best_class);
+                printf("%u\r\n", best_class);
                 break;
         }
     }

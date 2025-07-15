@@ -21,8 +21,6 @@ Modified from [Alif Security Toolkit User Guide v1.104.0](https://alifsemi.com/d
 
 2. Unzip the folder into `C:\app-release-exec>`
 
-TODO: Add more steps
-
 ## Setup Ubuntu 22.04 Docker
 Modified from [Evaluation Setup for Ubuntu](https://github.com/alifsemi/alif_ml-embedded-evaluation-kit/blob/main/ML_Embedded_Evaluation_Kit.md#ubuntu-setup)
 

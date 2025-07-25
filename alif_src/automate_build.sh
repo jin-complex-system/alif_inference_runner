@@ -122,10 +122,11 @@ rm -rf build_hp_infrun_*
 rm -rf models
 mkdir models
 
-eextract_binary_from_model "DTFT_Q" "../../my_models"
+extract_binary_from_model "DTFT_Q" "../../my_models"
 extract_binary_from_model "DTFT_SAC_Q" "../../my_models"
 extract_binary_from_model "TFT_Q" "../../my_models"
 extract_binary_from_model "FT_Q" "../../my_models"
 extract_binary_from_model "CNN_litert" "../../my_models"
 extract_binary_from_model "OB_model2_Q" "../../my_models"
+extract_binary_from_model "model_us_Q" "../../my_models"
 extract_binary_from_model "model_orbw_19_Q" "../../my_models"
